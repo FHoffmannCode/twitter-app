@@ -192,4 +192,3 @@ def logout():
 @app.route('/login')
 def login():
     return redirect(url_for('main_page'))
-
