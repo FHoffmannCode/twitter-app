@@ -29,9 +29,9 @@ class JSONEncodedDict(TypeDecorator):
 
 
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.BigInteger, primary_key=True)
     nickname = db.Column(db.String(64), index=True, nullable=False)
-    twitter_id = db.Column(db.Integer, index=True, unique=True, nullable=False)
+    twitter_id = db.Column(db.BigInteger, index=True, unique=True, nullable=False)
     oauth_token = db.Column(db.String(128), index=True, unique=True)
     oauth_token_secret = db.Column(db.String(128), index=True, unique=True)
     followers_of_followers = db.Column(JSONEncodedDict(255), index=True)
