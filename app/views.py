@@ -122,9 +122,7 @@ def get_followers_of_followers(api, user):
     @rtype: list[dict]
     """
     followers_data = {}
-    # uncomment following line when done with debugging
-    # followers = get_followers(api, user)
-    followers = get_followers_by_twitter_id(api, 1112837688)  # only for debug purpose
+    followers = get_followers(api, user)
     if followers is None:
         flash('Rate limit exceeded, try again in 15 minutes')
         return []
@@ -179,6 +177,7 @@ def get_followers_for_page(page):
 
 
 def get_followers_by_twitter_id(api, twitter_id):
+
     return api.followers(twitter_id)
 
 
@@ -188,3 +187,9 @@ def logout():
     logout_user()
     flash('You were logged out successfully')
     return redirect(url_for('main_page'))
+
+
+@app.route('/login')
+def login():
+    return redirect(url_for('main_page'))
+
