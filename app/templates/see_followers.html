@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid text-center">
+    <h3>Due to twitter api rate limit we are not able to fetch all data immediatly.
+        Because of that there are two options - you can either check the 'Wait on rate limit' option and fetch all of you follower's followers
+        (if you have many followers it may even take hours) or you can just fetch as much of them as possible without exceeding rate limit.</h3>
+    <div class='twitter-button-wrap'>
+        <form action="{{ url_for('fetch_followers') }}">
+            <div class="form-group">
+                <button type="submit" class='btn btn-default btn-lg btn-connect' href='{{ url_for("fetch_followers") }}'>View followers of your followers<i class='fa fa-twitter' aria-hidden='true'></i></button>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="wait_on_rate_limit" value="true">Wait on rate limit? It may take some time.</label>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+    <div class="flashed-message"><p>{{ message }}</p></div>
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div class='twitter-button-wrap'>
+        <a class='btn btn-default btn-lg btn-connect' href='{{ url_for("auth") }}'>Connect with Twitter <i class='fa fa-twitter' aria-hidden='true'></i>
+        </a>
+    </div>
+</div>
+{% endblock %}

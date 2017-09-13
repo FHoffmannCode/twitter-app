@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Twitter App</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/twitter-app.css') }}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://use.fontawesome.com/a1f58f558b.js"></script>
+</head>
+<body>
+<div class='container-fluid twitter-header'>
+    <h1>
+      Twitter App <i class="fa fa-twitter" aria-hidden="true"></i>
+    </h1>
+    {% if current_user.is_authenticated %}
+    <div class="text-right">
+        <p class="user-logged-in-info">{{ current_user.nickname }}</p>
+        <a class="btn btn-logout" href="{{ url_for('logout') }}">logout</a>
+    </div>
+    {% endif %}
+</div>
+{% block content %}{% endblock %}
+</body>

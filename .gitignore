@@ -1,0 +1,5 @@
+*.pyc
+.idea
+*.db
+local_config.py
+production_config.py

@@ -1,0 +1,87 @@
+body {
+  font-family: "Helvetica Neue";
+}
+
+.twitter-header {
+  background-color: lightblue;
+  padding: 5px;
+}
+
+.twitter-header h1 {
+  text-align: center;
+}
+
+.twitter-button-wrap {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 250px;
+}
+
+.btn-connect {
+  background-color: lightblue;
+}
+
+.flashed-message {
+  text-align: center;
+  font-size: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.second-rate-followers {
+  text-align: center;
+  font-size: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 500px;
+}
+
+.user-logged-in-info {
+  text-align: right;
+  font-size: large;
+  margin-right: 15px;
+}
+
+.user-logged-in-info span {
+  color: blue;
+}
+
+.btn-logout {
+  margin-top: 5px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  background-color: black;
+  color: white;
+  font-size: large;
+}
+
+.view-as-json-wrap {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.view-as-json-wrap a {
+  background-color: lightblue;
+}
+.no-followers-msg {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.no-followers-msg p{
+  font-size: 15px;
+}
+
+.no-followers-msg img {
+  width: 300px;
+}

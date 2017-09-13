@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class='container-fluid'>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+        <div class='flashed-message'><p>{{ message }}</p></div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  {% if followers_of_followers %}
+    {% for follower in followers_of_followers %}
+        <div class='second-rate-followers well'>{{ follower.user }} follows {{ follower.follows_count }} of my followers</div>
+    {% endfor %}
+  {% else %}
+    <div class='no-followers-msg'><p>It seems you have no followers</p><br>
+      <img src='http://pre14.deviantart.net/1226/th/pre/f/2015/148/0/5/sad_pepe__feels_bad_man__vector_by_hirussai-d8uq43y.png'>
+    </div>
+  {% endif %}
+  {% if pagination %}
+      {% from 'macros.html' import render_pagination %}
+      {{ render_pagination(pagination) }}
+  {% endif %}
+</div>
+{% endblock %}
