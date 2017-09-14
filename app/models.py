@@ -1,41 +1,13 @@
-import datetime
-import json
-
 import tweepy
 from app import db
-from sqlalchemy.types import VARCHAR, TypeDecorator
-
-
-class JSONEncodedDict(TypeDecorator):
-    """Represents an immutable structure as a json-encoded string.
-
-    Usage::
-
-        JSONEncodedDict(255)
-
-    """
-
-    impl = VARCHAR
-
-    def process_bind_param(self, value, dialect):
-        if value is not None:
-            value = json.dumps(value)
-        return value
-
-    def process_result_value(self, value, dialect):
-        if value is not None:
-            value = json.loads(value)
-        return value
 
 
 class User(db.Model):
-    id = db.Column(db.BigInteger, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nickname = db.Column(db.String(64), index=True, nullable=False)
     twitter_id = db.Column(db.BigInteger, index=True, unique=True, nullable=False)
     oauth_token = db.Column(db.String(128), index=True, unique=True)
     oauth_token_secret = db.Column(db.String(128), index=True, unique=True)
-    followers_of_followers = db.Column(JSONEncodedDict(255), index=True)
-    last_update_timestamp = db.Column(db.DateTime, index=True)
 
     @property
     def is_authenticated(self):

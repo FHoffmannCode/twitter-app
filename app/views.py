@@ -1,5 +1,3 @@
-import json
-
 from app import app, db, lm
 from app.models import User
 from app.pagination import Pagination
@@ -60,8 +58,7 @@ def fetch_followers():
     auth = get_auth_handler(current_user.oauth_token, current_user.oauth_token_secret)
     wait_on_rate_limit = True if request.args.get('wait_on_rate_limit') == u'true' else False
     api = API(auth, wait_on_rate_limit=wait_on_rate_limit)
-    current_user.followers_of_followers = json.dumps(get_followers_of_followers(api, api.me()))
-    db.session.commit()
+    session['followers_of_followers'] = get_followers_of_followers(api, api.me())
     return redirect(url_for('view_follower_followers'))
 
 
@@ -70,7 +67,7 @@ def fetch_followers():
 @login_required
 def view_follower_followers(page):
     followers_for_page = get_followers_for_page(page)
-    all_followers_count = len(json.loads(current_user.followers_of_followers))
+    all_followers_count = len(session['followers_of_followers'])
     if not followers_for_page and page != 1:
         abort(404)
     if all_followers_count <= RESULTS_PER_PAGE:
@@ -169,7 +166,7 @@ def get_followers_for_page(page):
     @type page: int
     @rtype: list[User]
     """
-    followers_of_followers = json.loads(current_user.followers_of_followers)
+    followers_of_followers = session['followers_of_followers']
     if len(followers_of_followers) == 0 or len(followers_of_followers) <= RESULTS_PER_PAGE:
         return followers_of_followers
     return followers_of_followers[
@@ -177,7 +174,9 @@ def get_followers_for_page(page):
 
 
 def get_followers_by_twitter_id(api, twitter_id):
-
+    """
+    for testing/debugging purposes only
+    """
     return api.followers(twitter_id)
 
 
