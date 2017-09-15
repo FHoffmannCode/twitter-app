@@ -22,4 +22,5 @@ If not visit - https://devcenter.heroku.com/articles/getting-started-with-python
 
 4. start the app: local - python run.py, heroku - heroku ps:scale web=1
 
-
+NOTE: 
+This app is meant to work with 'average' person account which means that if by any chance you're extremely popular and have like 1k followers it may not work properly. Why? In theory if you run app locally it SHOULD be able to fetch every single follower of your followers even if you have many of them but it will take a very long time due to Twitter API limits and there's significant chance that a connection error will occur during this time. On heroku though app wont be able to bypass limits because of heroku's custom 30s timeout. This can be fixed with moving this task to background worker but I think it'd be an overkill for such app.
